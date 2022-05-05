@@ -1,13 +1,13 @@
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-        int i = m -1 ;      //指向nums1非0的最後
-        int j = n -1 ;      //指向nums2的最後
-        int k = m + n -1 ;  //指向nums1陣列merge的最後
+        int i = m -1 ;      			//指向nums1非0的最後
+        int j = n -1 ;      			//指向nums2的最後
+        int k = m + n -1 ;  			//指向nums1陣列merge的最後
         
         //由於需排除0，故從大到小排即可
-        while(j >= 0){      //把nums2 merge至nums1
-            if(i >= 0){     //i可能為空
-                if(nums1[i] >= nums2[j]){   //判斷數字大小，並把較大的數字從後開始排，並遞減
+        while(j >= 0){      			//把nums2 merge至nums1
+            if(i >= 0){     			//i可能為空
+                if(nums1[i] >= nums2[j]){   	//判斷數字大小，並把較大的數字從後開始排，並遞減
                     nums1[k] = nums1[i];    
                     i--;
                     k--;
@@ -18,7 +18,7 @@ class Solution {
                     k--;
                 }
             }
-            else{       //nums1為0或空陣列時，直接把nums2 merge至nums1
+            else{       			//nums1為0或空陣列時，直接把nums2 merge至nums1
                 nums1[k] = nums2[j];
                 k--;
                 j--;
