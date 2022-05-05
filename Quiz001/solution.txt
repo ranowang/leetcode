@@ -1,10 +1,10 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        int [] result = new int[2];
+        int [] result = new int[2];  //宣告return array 
         
-        for(int i = 0 ; i < nums.length; i++){
-            for(int j = i+1 ; j < nums.length; j++){
-                if(nums[i] + nums[j] == target){
+        for(int i = 0 ; i < nums.length; i++){ //巢狀迴圈
+            for(int j = i+1 ; j < nums.length; j++){ //從下一位開始即可
+                if(nums[i] + nums[j] == target){ //判斷兩個數字相加是否等於target
                     result[0] = i ;
                     result[1] = j ;
                     return result;
