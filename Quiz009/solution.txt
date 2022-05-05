@@ -1,0 +1,24 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+        if(x < 0){					//負數一定不是Palindrome
+            return false;
+        }
+        
+        String xString = Integer.toString(x);		//轉成字串
+        int start = 0 ;					//頭
+        int end = xString.length() - 1;			//尾	
+        
+        while(start < end){				//遍及字串，直到交錯
+            char a = xString.charAt(start);		//運用chatAt取得字元
+            char b = xString.charAt(end);
+            if(a == b){					//if相等，則頭+1 尾-1繼續比較
+                start++;
+                end--;
+            }
+            else{
+                return false;				//只要不相等， return false
+            }
+        }
+        return true;					//return true
+    }
+}
