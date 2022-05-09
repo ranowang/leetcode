@@ -1,0 +1,19 @@
+class Solution {
+    public boolean isPalindrome(String s) {
+        if(s == null || s.length() == 0){			//判斷空字串的情況
+            return true;
+        }
+        
+        StringBuffer sb = new StringBuffer();			//用StringBuffer來做處理
+        s = s.toLowerCase();					//把s轉為全小寫
+        char [] ch = s.toCharArray();				//用char Array來遍及字串
+        
+        for(int i = 0 ; i < ch.length ; i++){			//判斷a~z 及0~9的才append至StringBuffer
+            if(ch[i] >= 'a' && ch[i] <= 'z' || ch[i] >= '0' && ch[i] <= '9'){
+                sb.append(ch[i]);
+            }
+        }
+        
+        return sb.toString().equals(sb.reverse().toString());	//用StringBuffer的reverse()做比對判斷
+    }
+}
