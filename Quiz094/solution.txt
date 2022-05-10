@@ -1,0 +1,80 @@
+/*
+1. Use recursive
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {					//TreeNode class
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List <Integer> res = new ArrayList<>();			//宣告結果的ArrayList
+        inOrder(root , res);					
+        return res;
+    }
+    
+    private void inOrder(TreeNode node , List<Integer> result){	//inOrder中序
+        
+        if(node== null){					//node為空時，直接return
+            return;
+        }
+        
+        inOrder(node.left , result);				//左
+        result.add(node.val);					//中
+        inOrder(node.right , result);				//右
+    }
+}
+
+*/
+
+/*
+2. Use Stack
+
+
+/**
+ * Definition for a binary tree node.				//TreeNode class
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List <Integer> result = new ArrayList<Integer>();	//宣告結果的ArrayList
+        Stack <TreeNode> tempStack = new Stack<TreeNode>();	//宣告Stack
+        
+        TreeNode curr = root ;					//root的值給與curr
+
+        while(curr!=null || !tempStack.isEmpty()){
+            while(curr!=null){					//遍及curr的左node
+                tempStack.push(curr);				//push至stack
+                curr = curr.left;
+            }
+            
+            curr = tempStack.pop();				//取出stack最頂層的Node
+            result.add(curr.val);				//放置result Array
+            curr = curr.right;					//遍及右邊的node
+        }
+        return result;
+    }
+}
+
+*/
