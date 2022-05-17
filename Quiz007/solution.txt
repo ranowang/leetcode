@@ -1,0 +1,22 @@
+class Solution {
+    public int reverse(int x) {
+        
+        long x1 = x;				//怕overflow故用long做運算
+        
+        int sign = x1 > 0 ? 1: -1;		//判斷正負號
+        x1 = sign * x1;				
+            
+        long result = 0; 			//宣告結果變數
+        
+        do{
+            result = result * 10 + x1 % 10;	//取個位數值（除以10的餘數）
+            x1 = x1 / 10;			//進位（除以10）
+        }while( x1 > 0);			
+        
+        if(result > Integer.MAX_VALUE){		//判斷overflow，符合返回0
+            return 0 ;
+        }
+        
+        return (int)result * sign;		//把result * 符號，並轉型為整數
+    }
+}
