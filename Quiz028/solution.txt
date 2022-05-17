@@ -1,0 +1,14 @@
+class Solution {
+    public int strStr(String haystack, String needle) {
+        int l1 = haystack.length();				//宣告haystack長度
+        int l2 = needle.length();				//宣告needle長度
+        
+        
+        for(int i = 0 ; i <= l1 -l2 ; i ++){			//遍及迴圈，只需跑l1-l2的長度
+            if(haystack.substring(i , i+l2).equals(needle)){	//判斷是否substring與needle是否相同
+                return i ;					//返回i位置
+            }
+        }
+        return -1;						//返回-1
+    }
+}
