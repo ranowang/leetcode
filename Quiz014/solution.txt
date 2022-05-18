@@ -1,0 +1,12 @@
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        String prefix = strs[0];					//宣告prefix為陣列的第一個字串
+        
+        for(int i = 1 ; i < strs.length ; i++){				//遍及strs
+            while(strs[i].indexOf(prefix) != 0){			//當prefix不為strs[I]的開頭
+                prefix = prefix.substring( 0 , prefix.length() - 1);	//prefix遞減
+            }
+        }
+        return prefix;
+    }
+}
