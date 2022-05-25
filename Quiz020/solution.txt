@@ -1,0 +1,27 @@
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> temp = new Stack<Character>();		//運用stack做判斷
+        
+        for( int i = 0 ; i < s.length() ; i++){			//遍及字串
+            char ch = s.charAt(i);				//取字串中的i字元
+            
+            if(ch =='(' || ch =='{' || ch =='['){		//假如等於( { [ 放置stack
+                temp.push(ch);
+            }
+            else{						
+                if(temp.isEmpty()){				//stack 為空直接返回false
+                    return false;
+                }
+                
+                char checkChar = temp.peek();			//查看stack最上面的字元
+                if(checkChar == '(' && ch ==')' || checkChar == '{' && ch =='}' || checkChar == '[' && ch ==']'){
+                    temp.pop();					//假如字串中的i字元與checkChar對應的話，則把stack最上面的字元pop出來
+                }
+                else{
+                    return false;				//不對應的話返回false
+                }
+            }
+        }
+        return temp.isEmpty();					//最後則判斷stack是否為空，是否成雙成對
+    }
+}
