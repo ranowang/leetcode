@@ -1,0 +1,46 @@
+//Solution 1
+/*
+class Solution {
+    public int singleNumber(int[] nums) {
+        HashMap<Integer , Integer> numsMap = new HashMap<Integer , Integer>();	//宣告hashMap
+        
+        int result = 0 ;							//初始化result
+        for( int i : nums){							//遍及nums陣列
+            if(!numsMap.containsKey(i)){					//假如沒有存在於Hashmap
+                numsMap.put(i , 1);						//放置於Hashmap並放置於map中，value =1
+            }
+            else{
+                numsMap.put(i , 1+1);						//存在於Hashmap的話 把value +1
+            }
+        }
+        
+        for( int key : numsMap.keySet()){					//遍及Hashmap
+            if(numsMap.get(key) == 1){						//把value =1的直放置於result
+                result = key ;
+            }
+        }
+        return result;								//返回result
+    }
+}    
+*/
+
+//Solution 2
+/*
+class Solution {
+    public int singleNumber(int[] nums) {
+        
+	/*	
+		一個數XOR 0還會是那個數字本身
+		一個數字XOR自己，會等於0
+		對同一數值互斥或兩次，會變回原來的數值
+		0 ^ 3 ^ 4 ^ 3   ➔ 4
+	*/								
+        int result = 0;								//初始化result
+        for(int i : nums){							//遍及nums陣列	
+            result = result ^ i;						//result XOR nums陣列
+        }
+        
+        return result;								//返回result
+    }
+}
+*/
