@@ -1,0 +1,31 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        if(list1 == null){					//假如list1為空，則return list2
+            return list2;
+        }
+        if(list2 == null){					//假如list2為空，則return list1
+            return list1;
+        }
+        
+        if(list1.val < list2.val){				//假如list1.val < list2.val
+            list1.next = mergeTwoLists(list1.next , list2);	//運用遞迴，把list1.next和list2做比較
+            return list1;
+        }
+        
+        else{							//list2.val 或值相同
+            list2.next = mergeTwoLists(list1 , list2.next);	//運用遞迴，把list2.next和list1做比較
+            return list2;
+        }
+    }
+    
+}
