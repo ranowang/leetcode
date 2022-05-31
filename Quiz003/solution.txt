@@ -1,0 +1,27 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        if(s == null || s.length() == 0){			//假如s字串為空，return 0
+            return 0 ; 
+        }
+        
+        int result = 1;						//由於已排除空字串，故最小為1
+        HashMap<Character , Integer> temp = new HashMap<>();	//初始化Hash map，存放不重複的字和index
+        int left = 0;						//設置指標left = 0 
+        
+        for(int i = 0 ; i < s.length() ; i++){			//遍歷s字串
+            char c = s.charAt(i);				//取出該Char
+            
+            if(temp.containsKey(c)){				//假如該Char有包含在Map中
+                left = Math.max(left , temp.get(c) + 1);	//由於left不能返回，及由於之前已出現過該Char，故新的left需把原有的 index+1，才會是第一個沒有出現的位置
+            }							
+            
+            if( i - left +1 > result){				//i - left + 1 為該Sliding Window的長度
+                result = i - left + 1;				//假如 > result，即為新的長度
+            }
+            
+            temp.put(c , i);					//無論如何都放置該Char及更新index
+        }
+        
+        return result;						//返回結果
+    }
+}
