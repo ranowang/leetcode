@@ -1,0 +1,15 @@
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        
+        int i = 0 ;					//宣告i為起始位置
+        
+        for(int j = 0 ; j < nums.length ; j++){		//用j 遍及陣列
+            if (nums[j] != val){			//假如nums[j]不等於val
+                nums[i] = nums[j];			//設置nums[i] = nums[j]
+                i ++;					//i 遞加
+            }
+        }
+        
+        return i;					//return i
+    }
+}

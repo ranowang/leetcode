@@ -1,0 +1,22 @@
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int left = 0 ;				//使用二分法，宣告左邊的位置
+        int right = nums.length -1 ;		//宣告右邊的位置
+        
+        while(left <= right){			//while 條件當左邊小於等於右邊，大於即跳出迴圈
+            int mid = (left + right) / 2;	//宣告中位數
+            
+            if(nums[mid] == target){		//假如nums[mid] == target
+                return mid;			//返回mid
+            }
+            else if(nums[mid] > target){	//假如nums[mid] > target，則表示在mid的左邊	
+                right = mid - 1;		//把right等於mid -1
+            }
+            else{				//假如nums[mid] < target，則表示在mid的右邊	
+                left = mid + 1;			//把left等於 mid +1
+            }
+        }
+        
+        return left;				//當left > right，最後則返回left
+    }
+}
