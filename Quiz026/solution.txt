@@ -1,0 +1,12 @@
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int i = 0;					//宣告i為起始位置
+        for(int j = 1; j < nums.length ; j++){		//j遍及nums陣列
+            if(nums[i] !=nums[j]){			//nums[i] 不等於nums[j]
+                i++;					//i + 1
+                nums[i]=nums[j];			//把nums[j]值指向nums[i]
+            }
+        }
+        return i + 1;					//return i+1
+    }
+}
