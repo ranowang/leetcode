@@ -1,0 +1,25 @@
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int max = Integer.MIN_VALUE;			//宣告max為整數最小值，避免nums為全負數
+        int sum = 0;					//宣告sum
+        
+        if(nums == null || nums.length == 0){		//防呆
+            return 0;
+        }
+        
+        for(int i = 0 ; i < nums.length ; i++){		//用i遍及nums陣列
+            
+            sum = sum + nums[i];			//把sum值累加
+            
+            if(sum < nums[i]){				//核心觀念，當總數小於當前陣列數值	
+                sum = nums[i];				//則nums[i]為開頭
+            }
+            if(sum > max){				//當sum大於max
+                
+                max = sum;				//max即為最大總和
+            }
+        }
+        
+        return max;					//並返回max
+    }
+}
