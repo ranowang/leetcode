@@ -1,0 +1,50 @@
+//solution 1
+
+/*
+class Solution {
+    public int lengthOfLastWord(String s) {
+        int lastLength = 0 ;				//初始化最後字的長度
+        s = s.trim();					//trim掉前後空白
+        for(int i = 0 ; i < s.length() ; i++){		//從頭遍歷s字串
+            char c = s.charAt(i);			//取i位的字元
+            if(s.charAt(i) ==' '){			//假如等於空白
+                lastLength = 0 ;			//則把長度改為0，代表不是最後的字
+            }else{					//假如不等於空白
+                lastLength ++ ;				//長度遞加
+            }
+        }
+        return lastLength;				//返回lastLength
+    }
+}
+*/
+
+//solution 2
+
+/*
+class Solution {
+    public int lengthOfLastWord(String s) {
+        int lastLength = 0;				//初始化最後字的長度
+        s = s.trim();					//trim掉前後空白
+        for(int i = s.length() -1 ; i >=0 ; i--){	//從後面遍歷s字串
+            if(s.charAt(i) != ' '){			//假如不等於空白
+                lastLength++;				//長度遞加
+            }else{					//假如等於空白
+                break;					//跳出迴圈
+            }
+        }
+        return lastLength;				//返回lastLength
+    }
+}
+*/
+
+//solution 3
+
+/*
+class Solution {
+    public int lengthOfLastWord(String s) {
+        String [] temp = s.split(" ");			//用空白切分s
+        int lastLength = temp[temp.length -1].length();	//取出該字串最後的lastLength
+        return lastLength;				//返回lastLength
+    }
+}
+*/
