@@ -1,0 +1,17 @@
+class Solution {
+    public int[] plusOne(int[] digits) {
+        
+        for(int i = digits.length -1 ; i >=0 ; i--){	//從陣列的尾遍歷
+            if( digits[i] < 9){				//只需判斷9的情況即可，假如該int小於9
+                digits[i] +=1 ;				//直接累加該陣列i的值
+                return digits;				//並返回該digits(ex: 123➔124、129➔130(會在第二次迴圈return))
+            }
+            
+            digits[i] = 0;				//等於9的時候把值改為0
+        }
+        
+        int [] result = new int[digits.length + 1];	//剩下digits[i]全為9的情形(ex:9、99、999)，宣告新陣列且長度為digits.length + 1
+        result[0] = 1;					//把起始位置的值改為1，陣列default已為0
+        return result;					//並返回result即可
+    }
+}
