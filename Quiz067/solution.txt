@@ -1,0 +1,29 @@
+class Solution {
+    public String addBinary(String a, String b) {
+       
+        StringBuilder sb = new StringBuilder(); 	//運用StringBuilder來append字串
+        int i = a.length() - 1;				//宣告指標i為字串a的尾巴，因為加法從後往前
+        int j = b.length() - 1;				//宣告指標j為字串b的尾巴，
+        int carry = 0;					//初始化進位
+        
+        while(i >= 0 || j >=0){				//當i或j大於零時，及代表有數字
+            int sum = carry ;				//把進位先加進來
+            if(i >=0 ){					//當i有值時，i與sum相加
+                sum += a.charAt(i) - '0';		//charAt(i) - '0'為char轉int的方法
+            }
+            if(j >=0 ){					/當j有值時，j再與sum相加
+                sum += b.charAt(j) - '0';		//charAt(j) - '0'為char轉int的方法
+            }
+            
+            sb.append(sum % 2);				//並把總數除以2的餘數append在StringBuilder
+            carry = sum / 2;				//總數除以2的商數為進位
+            i--;					//i遞減
+            j--;					//j遞減
+        }						//(2/2 = 1餘0、1/2 =0餘1、0/2 =0餘0)
+        
+        if(carry != 0){					//當遍歷i和j已結束後，如還有carry位
+            sb.append(1);				//則把carry位的數append在StringBuilder
+        }
+         return sb.reverse().toString();		//由於append字串是反向，故需返回reverse()
+    }
+}
