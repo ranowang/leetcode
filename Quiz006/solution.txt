@@ -1,0 +1,29 @@
+class Solution {
+    public String convert(String s, int numRows) {
+        char [] c = s.toCharArray();						//把字串s轉為c的char array
+        int length = c.length;							//宣告總長度
+        
+        StringBuilder[] sb = new StringBuilder[numRows];			//宣告StringBuilder的陣列存放numRows的每一列
+        for(int i = 0 ; i < sb.length; i++){					//初始化每一個StringBuilder
+            sb[i] = new StringBuilder();
+        }
+        
+        int index = 0 ;								//宣告index來遍歷字串
+        
+        while(index < length){							//while遍歷字串
+            for(int i = 0 ; i < numRows && index < length; i++){		//for迴圈來處裡由上而下排序的char
+                sb[i].append(c[index]);						//append對應index的char
+                index++;							//index累加
+            }
+            for(int i = numRows -2; i >= 1 && index < length; i--){		//for迴圈來處理由下往上的排序，發現由下而上為numRows-2 開始到1即可
+                sb[i].append(c[index]);						//append對應index的char
+                index++;							//index累加
+            }
+        }
+        
+        for(int i = 1 ; i < sb.length ; i++){					//for迴圈來把全部的StringBuilder所組好的String給append起來
+            sb[0].append(sb[i]);						//用sb[0]當base做append
+        }
+            return sb[0].toString();						//返回sb[0]的toString()
+    }
+}
