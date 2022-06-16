@@ -1,0 +1,22 @@
+class Solution {
+    public int mySqrt(int x) {
+        					//用binary search處理
+        long left = 0;				//用long宣告left，怕相乘溢位
+        long right = x;				//用long宣告right，怕相乘溢位
+        
+        while(left <= right){			//當左數大於右數十跳出迴圈
+            long mid = (left + right) / 2;	//取中位數
+            
+            if(mid * mid == x){			//假如中位數相乘等於x
+                return (int)mid;		//返回mid 並轉型
+            }
+            else if(mid * mid > x){		//假如中位數相乘大於x
+                right = mid - 1;		//把右數等於中位數-1
+            }
+            else{				//假如中位數相乘小於x
+                left = mid + 1;			//把右數等於中位數+1
+            }
+        }
+        return (int)right;			最後返回右數
+    }
+}
