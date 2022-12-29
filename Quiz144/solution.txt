@@ -1,0 +1,77 @@
+/*
+1. Use recursive
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {					//TreeNode class
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<>();			//宣告結果的ArrayList
+        preOrder(root , res);
+        return res ; 
+    }
+    private void preOrder(TreeNode node , List<Integer> temp){	//preOrder前序
+        if(node== null){					//node為空時，直接return
+            return;
+        }
+        temp.add(node.val);					//中
+        preOrder(node.left , temp);				//左
+        preOrder(node.right , temp);				//右
+    }
+}
+
+*/
+
+/*
+2. Use Stack
+
+
+/**
+ * Definition for a binary tree node.				//TreeNode class
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {	//preOrder前序(中左右)
+        Stack<TreeNode> tempStack = new Stack<>();		//宣告結果的ArrayList
+        List<Integer> res = new ArrayList<>();			//宣告Stack
+        TreeNode node = root;					//root的值給與curr
+
+        while(node !=null || !tempStack.isEmpty()){
+            while(node != null){
+                res.add(node.val);				//先把中節點的值放置result Array
+                tempStack.push(node.right);			//push右節點至stack
+                node = node.left;				//繼續往左節點遍歷
+            }
+
+            node = tempStack.pop();				//當左節點遍歷完後，把放置在stack的右節點取出
+
+        }
+        return res;
+    }
+}
+
+*/
