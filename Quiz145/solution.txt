@@ -1,0 +1,81 @@
+/*
+1. Use recursive
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {					//TreeNode class
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<>();				//宣告結果的ArrayList
+        postOrder(root , res);
+        return res;
+    }
+
+    private void postOrder(TreeNode node , List<Integer> temp){		//postOrder後序	
+        if(node == null){						//node為空時，直接return
+            return;
+        }
+        postOrder(node.left , temp);					//左
+        postOrder(node.right , temp);					//右
+        temp.add(node.val);						//中
+    }
+}
+
+*/
+
+/*
+2. Use Stack
+
+
+/**
+ * Definition for a binary tree node.				//TreeNode class
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {	//postOrder後序(左右中)
+        Stack<TreeNode> tempStack = new Stack<>();		//宣告Stack
+        List<Integer> res = new ArrayList<>();			//宣告結果的ArrayList
+        TreeNode node = root;					//root的值給與node
+
+        while(node != null || !tempStack.isEmpty()){
+            while(node != null){
+                tempStack.push(node);				//push node至stack
+                res.add(0,node.val);				//先把節點的值放置result Array(注意這邊要從頭放置，不然會反向)
+                node = node.right;				//繼續往右遍歷
+            }
+                node = tempStack.pop();				//把stack的頂部pop出來
+                node = node.left;				//往左遍歷
+        }
+        return res;
+    }
+}
+
+*/
+
+
+
+
