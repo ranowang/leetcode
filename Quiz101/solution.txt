@@ -1,0 +1,82 @@
+//solution 1
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        if(root == null){				//if root=null return true
+            return true;
+        }
+        return isSymmetric(root.left,root.right);	//比對左右子樹
+    }
+     public boolean isSymmetric(TreeNode left , TreeNode right){
+        if(left == null || right ==null){		//左子樹或右子樹為null時，直接比對return左子樹或右子樹
+            return left == right;
+        }
+        if(left.val != right.val){			//當左右子樹的val不相同時，return false
+            return false;
+        }
+        return (isSymmetric(left.left , right.right) && isSymmetric(left.right , right.left));	//使用遞迴比較左子樹的左節點，是否與右子樹的右節點相等，以及左子樹的右節點，是否與右子樹的左節點相等
+     }
+}
+
+//solution 2
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        Stack<TreeNode> tempStack = new Stack<>();		//宣告Stack
+
+        tempStack.push(root.left);				//push root的左子樹節點
+        tempStack.push(root.right);				//push root的右子樹節點
+
+        TreeNode temp1,temp2;
+
+        while(!tempStack.isEmpty()){				//當tempStack不為空的時候，執行迴圈
+            temp1 = tempStack.pop();				//取出tempStack節點
+            temp2 = tempStack.pop();				//取出tempStack節點
+
+            if(temp1== null && temp2== null){			//當兩者皆為空時,繼續執行
+                continue;
+            }
+            else if(temp1 == null || temp2== null ||temp1.val != temp2.val){	//當只有一個node為空，或著左節點不等於右節點的話，返回false
+                return false;
+            }
+
+            tempStack.push(temp1.left);				//放置左子樹的左節點
+            tempStack.push(temp2.right);			//放置右子樹的右節點
+            tempStack.push(temp1.right);			//放置左子樹的右節點
+            tempStack.push(temp2.left);				//放置右子樹的右節點
+
+        }
+        return true;						//當迴圈都沒有return false時，return true
+    }
+}
+
